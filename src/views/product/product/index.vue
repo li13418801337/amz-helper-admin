@@ -65,6 +65,12 @@
       <el-table-column label="子ASIN" align="center" prop="childAsin" />
       <el-table-column label="纸箱id" align="center" prop="cartonId" />
       <el-table-column label="包装重量" align="center" prop="weightGram" />
+      <el-table-column label="关联成本ID" align="center" prop="productCostId" width="110">
+        <template #default="scope">
+          <el-tag v-if="scope.row.productCostId" type="success" size="small">{{ scope.row.productCostId }}</el-tag>
+          <span v-else style="color:#909399">—</span>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template #default="scope">
           <el-button link type="primary" @click="handleUpdate(scope.row)"
@@ -135,7 +141,7 @@ const data = reactive({
   form: {},
   queryParams: {
     pageNum: 1,
-    pageSize: 10,
+    pageSize: 20,
     productName: null,
     productPrice: null,
     productUrl: null,
